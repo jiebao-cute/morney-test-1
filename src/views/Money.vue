@@ -1,13 +1,15 @@
 <template>
-<div>money.vue</div>
+    <div>
+      <layout>
+        <p>money.vue</p>
+      </layout>
+    </div>
 </template>
 
 <script lang="ts">
+
 export default {
-  name: 'Money.vue'
+  name: 'Money.vue',
 };
 </script>
 
-<style lang="scss" scoped>
-
-</style>
