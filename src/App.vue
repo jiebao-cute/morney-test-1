@@ -9,6 +9,15 @@
     margin: 0; padding: 0;
     box-sizing: border-box;//将padding 和margin全部清0
   }
+  body{
+    line-height: 1.5;
+  }
+
+  a{
+   text-decoration: none;//去掉字的下划线
+    color: inherit;//字体黑色
+  }
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
