@@ -6,3 +6,13 @@ a{
   text-decoration: none;//去掉字的下划线
   color: inherit;//字体黑色
 }
+ul,ol{
+  list-style: none;
+}
+button,input{
+  font: inherit;//继承上一层的字
+}
+
+:focus{
+  outline: none;//去掉input选中的时候的黄色边框
+}
