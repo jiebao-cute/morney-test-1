@@ -20,7 +20,8 @@ type Record = {
   tags: string[];
   notes: string;
   type: string;
-  amount: number;
+  amount: number;//数据类型object\\string
+  createdAt? : Date;//类   构造函数
 }
 
 @Component({
@@ -40,7 +41,8 @@ export default class Money extends Vue{
          this.record.notes = value;
        }
        saveRecord(){
-        const record2 = JSON.parse(JSON.stringify(this.record));
+        const record2: Record= JSON.parse(JSON.stringify(this.record));
+        record2.createdAt = new Date();
         this.recordList.push(record2);
          console.log(this.recordList);
        }
