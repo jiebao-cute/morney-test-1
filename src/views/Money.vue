@@ -1,6 +1,5 @@
 <template>
       <layout class-prefix="xxx">
-        {{record}}
         <number-pad :value.sync="record.amount"  @submit="saveRecord" />
         <types :value.sync="record.type" />
         <div class="notes">
