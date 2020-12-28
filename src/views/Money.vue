@@ -23,7 +23,7 @@ import {Component} from 'vue-property-decorator';
 })
 export default class Money extends Vue{
       tags = window.tagList;
-      recordList = window.recordList();
+      recordList = window.recordList;
       record: RecordItem ={
         tags:[] , notes:'' , type:'-' , amount:0
       }
