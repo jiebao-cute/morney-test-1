@@ -6,7 +6,6 @@ const tagsListModel: TagsListModel= {
   create(name: string){
     const names = this.data.map(item=> item.name);
     if (names.indexOf(name) >= 0){return 'duplicated'}
-    console.log(createdId);
     const id = createdId().toString();
     this.data.push({id,name:name});
     this.save();
