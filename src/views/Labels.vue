@@ -20,18 +20,24 @@ import {Component} from 'vue-property-decorator';
 import Button from '@/components/Money/Button.vue';
 
 @Component({
-  components: {Button}
+  components: {Button},
+  computed:{
+    tags(){
+      return this.$store.state.tagList;
+    }
+  }
 })
 export default class Labels extends Vue{
-   //TODO
-    tags = [];
-   //tags = store.tagList;
+   beforeCreate(){
+     this.$store.commit('fetchTag');
+   }
    createTag(){
      const name = window.prompt('请输入标签名');
-     if(name){
-       //TODO
-       //store.createTag(name);
-     }
+       if(name === ''|| name === 'undefined' || !name || !/[^\s]/.test(name)){
+         return window.alert('标签名不能为空');
+       }else{
+         this.$store.commit('createTag',name);
+       }
    }
 }
 </script>
