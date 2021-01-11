@@ -5,18 +5,14 @@ import createdId from '@/lib/createdId';
 import router from '@/router';
 
 Vue.use(Vuex);
-type Rootstate ={
-  recordList: RecordItem[];
-  tagList: Tag[];
-  currentTag?: Tag;
-}
+
 
 const store = new Vuex.Store({
   state: {
     recordList:[],
     tagList:[],
     currentTag:undefined
-  }as Rootstate,
+  }as RootState,
 
   mutations: {
     setCurrentTag(state, id: string) {
@@ -57,7 +53,7 @@ const store = new Vuex.Store({
     },
     createRecord(state,record){
       const record2: RecordItem = clone(record);
-      record2.createdAt = new Date();
+      record2.createdAt = new Date().toISOString();
       state.recordList.push(record2);
       store.commit('saveRecords')
     },
