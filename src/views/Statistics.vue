@@ -68,7 +68,7 @@ export default class Statistics extends Vue {
 
   get groupedList() {
     const {recordList} = this;
-    if (recordList.length === 0) {return [];}
+    if (recordList.length === 0) {return [] as Result;}
 
     const newList = clone(recordList)
         .filter(t => t.type === this.type)
