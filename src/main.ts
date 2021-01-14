@@ -17,3 +17,9 @@ new Vue({
   store,
   render: h => h(App)
 }).$mount('#app')
+
+window.onload = function (){
+  setTimeout(function (){
+    window.scrollTo(0,200);
+  },0);
+};//浏览器如果无法看到最下方的标签，可让他在0秒置底
