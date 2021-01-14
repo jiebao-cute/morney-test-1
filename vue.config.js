@@ -1,4 +1,4 @@
-const path = require('path')
+const path = require('path');
 module.exports = {
   publicPath: process.env.NODE_ENV === 'production'
       ? '/morney-1-website/'
