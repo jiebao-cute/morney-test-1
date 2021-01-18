@@ -4,9 +4,16 @@
        <Tabs :dataSource ="recordTypeList" :value.sync = "record.type"/>
         <div class="notes">
         <FormItem field-name="备注"
-               placeholder="在这里输入备注"
-                  :value="record.notes"
-               @update:value="onUpdateNotes"/>
+                  placeholder="在这里输入备注"
+                  :value.sync="record.notes"
+        />
+        </div>
+        <div class="createdAt">
+          <FormItem field-name="日期"
+                    placeholder="在这里输入日期"
+                    type="date"
+                    :value.sync="record.createdAt"
+          />
         </div>
         <tags @update:value = "onUpdateTags"/>
       </layout>
@@ -27,7 +34,7 @@ import Tags from '@/components/Money/tags.vue';
 
 export default class Money extends Vue{
       record: RecordItem ={
-        tags:[] , notes:'' , type:'-' , amount:0
+        tags:[] , notes:'' , type:'-' , amount:0,createdAt:new Date().toISOString()
       }
       get tagList(){
         return this.$store.state.recordList;
@@ -58,7 +65,10 @@ export default class Money extends Vue{
       flex-direction: column-reverse;
     }
     .notes{
-     padding: 10px 0;
+     padding: 1px 0;
+    }
+    .createdAt{
+      padding: 1px 0;
     }
 </style>
 <style lang="scss" scoped>
