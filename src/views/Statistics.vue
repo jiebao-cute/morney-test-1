@@ -2,7 +2,9 @@
 <div>
   <layout>
      <Tabs class-prefix = "type" :data-source="typeList" :value.sync="type"/>
-     <chart :options = "x"/>
+    <div class="chart-wrapper" ref="chartWrapper">
+      <chart class="chart" :options = "x"/>
+    </div>
       <ol v-if="groupedList.length>0">
         <li v-for="(group,index) in groupedList" :key="index" >
          <H3 class="title">{{beautify(group.title)}} <span>￥{{group.total}}</span></H3>
@@ -50,6 +52,9 @@ export default class Statistics extends Vue {
     }
   }
 
+  mounted(){
+    this.$refs.chartWrapper.scrollLeft = 9999;//将滚动条滚在最右方
+  }
   beautify(string: string) {
     const day = dayjs(string);
     const now = dayjs();
@@ -67,6 +72,10 @@ export default class Statistics extends Vue {
   }
   get x() {
     return {
+      grid:{
+        left:0,
+        right:0,
+      },//去掉echarts的padding
       xAxis: {
         type: 'category',
         data: [
@@ -76,7 +85,8 @@ export default class Statistics extends Vue {
         ]
       },
       yAxis: {
-        type: 'value'
+        type: 'value',
+        show: false
       },
       series: [{
         data: [
@@ -122,7 +132,6 @@ export default class Statistics extends Vue {
   }
 
 
-
   beforeCreate(){
     this.$store.commit('fetchRecord');
   }
@@ -133,6 +142,12 @@ export default class Statistics extends Vue {
 }
 </script>
 <style lang="scss" scoped>
+.chart{
+  width: 430%;
+  &-wrapper{
+    overflow: auto;
+  }
+}
 %item{
   padding: 8px 16px;
   line-height: 24px;
