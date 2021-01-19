@@ -83,15 +83,17 @@ export default class Statistics extends Vue {
           '11', '12', '13', '14', '15', '16', '17', '18', '19', '20',
           '21', '22', '23', '24', '25', '26', '27', '28', '29', '30',
         ],
-        axisTick:{alignWithLabel:true}
+        axisTick:{alignWithLabel:true},
+        axisLine:{lineStyle:{color:'#666'}}
       },
       yAxis: {
         type: 'value',
         show: false
       },
       series: [{
+        symbol:'circle',
         symbolSize:12,
-        itemStyle:{borderWidth:20},
+        itemStyle:{borderWidth:20,color: '#666'},
         data: [
           820, 932, 901, 934, 1290, 1330, 1320,
           820, 932, 901, 934, 1290, 1330, 1320,
@@ -100,7 +102,11 @@ export default class Statistics extends Vue {
         ],
         type: 'line'
       }],
-      tooltip: {show: true}
+      tooltip: {show: true,
+      triggerOn:'click',
+        position:'top',
+        formatter:'{c}'
+      }
     };
   }
 
