@@ -53,7 +53,8 @@ export default class Statistics extends Vue {
   }
 
   mounted(){
-    this.$refs.chartWrapper.scrollLeft = 9999;//将滚动条滚在最右方
+    const div = this.$refs.chartWrapper;//将滚动条滚在最右方
+    div.scrollLeft = div.scrollWidth;
   }
   beautify(string: string) {
     const day = dayjs(string);
