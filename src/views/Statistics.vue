@@ -54,7 +54,7 @@ export default class Statistics extends Vue {
   }
 
   mounted(){
-    const div = this.$refs.chartWrapper;//将滚动条滚在最右方
+    const div = (this.$refs.chartWrapper as HTMLDivElement);//去掉Pc端滚动条
     div.scrollLeft = div.scrollWidth;
   }
   beautify(string: string) {
@@ -85,7 +85,7 @@ export default class Statistics extends Vue {
      });
    }
    array.sort((a,b)=>{
-     if (a.date > b.day){
+     if (a.date > b.date){
        return 1;
      }else if(a.date === b.date){
        return 0
