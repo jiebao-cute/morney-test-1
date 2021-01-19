@@ -32,7 +32,8 @@ import recordTypeList from '@/constants/recordTypeList';
 import dayjs from 'dayjs';
 import clone from '@/lib/clone';
 import Chart from '@/components/chart.vue';
-
+import _ from 'lodash';
+import day from  'dayjs';
 
 @Component({
   components: {Tabs,Chart}
@@ -71,7 +72,33 @@ export default class Statistics extends Vue {
       return day.format('YYYY年M月D日');
     }
   }
+  get y(){
+   const today = new Date();
+   const array = [];
+   for (let i = 0 ; i<=29 ; i++){
+     const dateString = day(today).subtract(i,'day').format('YYYY-MM-DD');
+     const found = _.find(this.recordList,{
+       createdAt: dateString
+     });
+     array.push({
+       date:dateString,value: found ? found.amount : 0
+     });
+   }
+   array.sort((a,b)=>{
+     if (a.date > b.day){
+       return 1;
+     }else if(a.date === b.date){
+       return 0
+     }else {
+       return -1
+     }
+   })
+  return array;
+  }
+
   get x() {
+    const keys = this.y.map(item=>item.date);
+    const values = this.y.map(item=>item.value);
     return {
       grid:{
         left:0,
@@ -79,11 +106,7 @@ export default class Statistics extends Vue {
       },//去掉echarts的padding
       xAxis: {
         type: 'category',
-        data: [
-          '1', '2', '3', '4', '5', '6', '7', '8', '9', '10',
-          '11', '12', '13', '14', '15', '16', '17', '18', '19', '20',
-          '21', '22', '23', '24', '25', '26', '27', '28', '29', '30',
-        ],
+        data:keys,
         axisTick:{alignWithLabel:true},
         axisLine:{lineStyle:{color:'#666'}}
       },
@@ -95,12 +118,7 @@ export default class Statistics extends Vue {
         symbol:'circle',
         symbolSize:12,
         itemStyle:{borderWidth:20,color: '#666'},
-        data: [
-          820, 932, 901, 934, 1290, 1330, 1320,
-          820, 932, 901, 934, 1290, 1330, 1320,
-          820, 932, 901, 934, 1290, 1330, 1320,
-          820, 932, 901, 934, 1290, 1330, 1320, 1, 2
-        ],
+        data: values,
         type: 'line'
       }],
       tooltip: {show: true,
